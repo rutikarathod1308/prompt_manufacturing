@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:Qrcode-{####}",
+ "creation": "2024-11-27 13:22:30.479554",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "grn_no",
+  "qrcode_item_details"
+ ],
+ "fields": [
+  {
+   "fieldname": "grn_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "GRN No.",
+   "options": "Purchase Receipt",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qrcode_item_details",
+   "fieldtype": "Table",
+   "label": "Qrcode Item Details",
+   "options": "Qrcode Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-11-27 15:19:59.637706",
+ "modified_by": "Administrator",
+ "module": "prompt_manufacturing",
+ "name": "Qrcode Generate",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

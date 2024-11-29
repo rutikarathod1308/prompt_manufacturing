@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+# doctype_js = {"Stock Entry" : "public/js/stock_entry.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -145,6 +145,12 @@ app_license = "mit"
 # 	}
 # }
 
+doc_events = {
+    "Stock Entry":{
+        "on_submit":"prompt_manufacturing.public.py.serial_no_update.serial_no_update"
+    }
+}
+
 # Scheduled Tasks
 # ---------------
 
@@ -165,6 +171,14 @@ app_license = "mit"
 # 		"prompt_manufacturing.tasks.monthly"
 # 	],
 # }
+
+scheduler_events = {
+    "cron": {
+        "* * * * *": [
+            "erpnext.stock.reorder_item.reorder_item"
+        ]
+    }
+}
 
 # Testing
 # -------
@@ -242,3 +256,40 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    {"dt":"Print Format","filters":[
+        [
+        "module","in",[
+                "prompt_manufacturing"
+            ]
+        ]
+    ]},
+    {"dt":"Custom Field","filters":[
+        [
+            "module","in",[
+               "prompt_manufacturing"
+            ],
+        ]
+    ]},
+    {"dt":"Property Setter","filters":[
+        [
+        "module","in",[
+                "prompt_manufacturing"
+            ]
+        ]
+    ]},
+    {"dt":"Workspace","filters":[
+        [
+        "module","in",[
+                "prompt_manufacturing"
+            ]
+        ]
+    ]},
+     {"dt":"Report","filters":[
+        [
+        "module","in",[
+                "prompt_manufacturing"
+            ]
+        ]
+    ]}
+]
