@@ -43,7 +43,7 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"Stock Entry" : "public/js/stock_entry.js"}
+doctype_js = {"Quality Inspection" : "public/js/quality.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -148,6 +148,13 @@ app_license = "mit"
 doc_events = {
     "Stock Entry":{
         "on_submit":"prompt_manufacturing.public.py.serial_no_update.serial_no_update"
+    },
+     "Quality Inspection":{
+        "on_submit":"prompt_manufacturing.public.py.qc_serial_no.qc_serial_no_update",
+        "on_cancel":"prompt_manufacturing.public.py.qc_serial_no.qc_serial_no_cancel"
+    },
+    "Purchase Receipt":{
+        "on_submit":"prompt_manufacturing.public.py.serial_no_update.qc_generate_submit"
     }
 }
 

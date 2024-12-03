@@ -1,5 +1,5 @@
 import frappe 
-
+import time
 def serial_no_update(doc=None, serial_no=None):
     if doc.stock_entry_type == "Manufacture":
         item_dict = []
@@ -43,3 +43,38 @@ def serial_no_update(doc=None, serial_no=None):
                         })
                         work.save()
 
+
+def qc_generate_submit(doc=None,method=None):
+    time.sleep(2)
+    for item in doc.items:
+        
+        serial_no = frappe.db.get_all(
+            "Serial and Batch Entry",
+            filters={"parent": item.serial_and_batch_bundle,},
+            fields=["*"]
+        )
+
+        for serial in serial_no:
+            # Check if Quality Inspection already exists
+            existing_qi = frappe.db.exists(
+                "Quality Inspection",
+                {"reference_name": doc.name, "docstatus": ["!=", 2]}
+            )
+            
+            if not existing_qi:
+                # Create a new Quality Inspection draft
+                qi_doc = frappe.get_doc({
+                    "doctype": "Quality Inspection",
+                    "inspection_type" : "Incoming",
+                    "reference_type" :"Purchase Receipt",
+                    "reference_name": doc.name,
+                    "sample_size" : 0 ,
+                    "item_code": item.item_code,
+                    
+                    "item_serial_no": serial.get("serial_no"),
+                    "status": "Accepted",
+                    "inspected_by":"Administrator"
+                    # Add any additional fields required for Quality Inspection
+                })
+                qi_doc.insert(ignore_permissions=True)  # Insert as draft
+                
