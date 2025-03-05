@@ -6,7 +6,9 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "item_sub_sub_group"
+  "item_sub_sub_group",
+  "company",
+  "description"
  ],
  "fields": [
   {
@@ -14,11 +16,24 @@
    "fieldtype": "Data",
    "label": "Item Sub-Sub-Group",
    "unique": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-26 15:13:00.817815",
+ "modified": "2024-12-04 11:22:05.471562",
  "modified_by": "Administrator",
  "module": "prompt_manufacturing",
  "name": "Item Sub-Sub-Group",
